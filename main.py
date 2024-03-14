@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Combine all file contents from a directory into one giant file
+Copy all file contents from a directory into your clipboard for easy copy/pasting
 """
 import os
 import sys
