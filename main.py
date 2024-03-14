@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-combine all file contents from a directory into one giant file
+Combine all file contents from a directory into one giant file
 """
 import os
 import sys
@@ -21,17 +21,15 @@ FILE_INCLUDE_LIST = [
 ]
 
 def main(dir_path: str) -> None:
-  """
-  start
-  """
-  files = walk_directory(dir_path)
-  combine_files(files, dir_path)
-  # combine_files_to_new_file(files, "combined.txt", dir_path)
+  file_paths: list[str] = walk_directory(dir_path)
+  combined_content: str = combine_files(file_paths, dir_path)
+  pyperclip.copy(combined_content)
+  print(f"Copied contents from {len(file_paths)} files to clipboard")
 
 
 def walk_directory(dir_path: str) -> list[str]:
   """
-  walk the directory and return list of files
+  Walk the directory and return list of files
   """
   file_paths = []
   for root, dirs, files in os.walk(dir_path):
@@ -45,7 +43,7 @@ def walk_directory(dir_path: str) -> list[str]:
 
 def combine_files(files: list[str], dir_path: str) -> str:
   """
-  combine contents of all files into one giant string
+  Combine contents of all files into one giant string
   """
   combined_content = ""
   root_dir_idx = dir_path.rfind("/")
@@ -55,14 +53,12 @@ def combine_files(files: list[str], dir_path: str) -> str:
       combined_content += f"file name: {file[root_dir_idx + 1:]}" + "\n\n"
       combined_content += f.read()
       combined_content += "\n"
-  pyperclip.copy(combined_content)
-  print(f"copied contents from {len(files)} files to clipboard")
   return combined_content
 
 
 def combine_files_to_new_file(files: list[str], output_file: str, dir_path: str) -> None:
   """
-  combine contents of all files into one giant file
+  Combine contents of all files into one giant file
   """
   if os.path.exists(output_file):
     os.remove(output_file)
