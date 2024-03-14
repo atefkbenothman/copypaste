@@ -50,7 +50,7 @@ def combine_files(files: list[str], dir_path: str) -> str:
   for file in files:
     with open(file, "r") as f:
       combined_content += "-" * 20 + "\n"
-      combined_content += f"file name: {file[root_dir_idx + 1:]}" + "\n\n"
+      combined_content += f"File name: {file[root_dir_idx + 1:]}" + "\n\n"
       combined_content += f.read()
       combined_content += "\n"
   return combined_content
@@ -67,10 +67,10 @@ def combine_files_to_new_file(files: list[str], output_file: str, dir_path: str)
     for file in files:
       with open(file, "r") as in_file:
         out_file.write("-" * 20 + "\n")
-        out_file.write(f"file name: {file[root_dir_idx + 1:]}" + "\n\n")
+        out_file.write(f"File name: {file[root_dir_idx + 1:]}" + "\n\n")
         out_file.write(in_file.read())
         out_file.write("\n\n")
-  print(f"combined {len(files)} files into {output_file}")
+  print(f"Combined {len(files)} files into {output_file}")
 
 
 if __name__ == "__main__":
@@ -78,8 +78,8 @@ if __name__ == "__main__":
     directory = sys.argv[1]
     if directory == ".":
       directory = os.getcwd()
-    print(f"copying contents from directory {directory}")
+    print(f"Copying contents from directory {directory}")
     main(directory)
   else:
-    print("specify the project path")
+    print("Specify the project path")
 
