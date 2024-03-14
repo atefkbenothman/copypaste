@@ -48,15 +48,17 @@ def combine_files(files: list[str], dir_path: str) -> str:
   """
   root_dir_idx = dir_path.rfind("/")
   combined_content = ""
+  line_count = 0
   for file in files:
     combined_content += "-" * 20 + "\n"
     combined_content += f"file name: {file[root_dir_idx + 1:]}" + "\n\n"
     with open(file, "r") as f:
       for line in f:
         combined_content += line
+        line_count += 1
       combined_content += "\n"
   pyperclip.copy(combined_content)
-  print(f"copied contents from {len(files)} files to clipboard")
+  print(f"copied contents from {len(files)} files to clipboard (total lines ~= {line_count})")
   return combined_content
 
 
